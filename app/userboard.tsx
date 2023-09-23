@@ -1,10 +1,8 @@
-// @ts-ignore
-import { Navbar } from '../components/Navbar';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 
 
-export default function Home(){
+
+export default function userboard(){
     return (
         <div>
             <div className='rounded-lg card border-2 shadow-card bg-whitep-4 w-1/3 m-6 text-center'>
