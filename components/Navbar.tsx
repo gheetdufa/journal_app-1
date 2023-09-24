@@ -10,12 +10,12 @@ export const Navbar = () => {
 
     return (
         <>
-            <nav className="fixed top-0 left-0 w-full z-50 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+            <nav className="fixed top-0 left-0 w-full z-50 bg-neutral-900 rounded-b-sm">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="#" className="flex items-center">
-                        <img src="https://www.svgrepo.com/show/524328/book.svg" className="h-8 mr-3" alt="Flowbite Logo" />
+                        <img src="/notebook.svg" className="h-8 mr-3" alt="Flowbite Logo" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap text-red-500">r</span>
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ant.AI</span>
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">ant.AI</span>
                     </a>
                     <div className="ml-auto lg:hidden">
                         <button
@@ -33,15 +33,15 @@ export const Navbar = () => {
                         </button>
                     </div>
                     <div className={`lg:flex lg:items-center lg:w-auto w-full ${active ? 'block' : 'hidden'}`} id="navbar-hamburger">
-                        <ul className="lg:flex lg:flex-row flex-col font-medium mt-4 lg:mt-0 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                        <ul className="lg:flex lg:flex-row flex-col font-medium mt-4 lg:mt-0 ">
                             <li>
-                                <a href="/" className="block py-2 px-4 text-gray-900 rounded hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Home</a>
+                                <a href="/" className="rounded-lg block py-2 px-4 text-gray-900 rounded text-white">Home</a>
                             </li>
                             <li>
-                                <a href="/mission" className="block py-2 px-4 text-gray-900 rounded hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Mission Statement</a>
+                                <a href="/mission" className="rounded-lg block py-2 px-4 text-gray-900 rounded text-white">Mission Statement</a>
                             </li>
                             <li>
-                                <a href="contact" className="block py-2 px-4 text-gray-900 rounded hover:bg-gray-200 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white">Contact Us</a>
+                                <a href="contact" className="rounded-lg block py-2 px-4 text-gray-900 rounded hover- text-white">Contact Us</a>
                             </li>
                         </ul>
                     </div>

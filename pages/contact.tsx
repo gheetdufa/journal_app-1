@@ -3,6 +3,7 @@
 import exp from 'constants';
 import { Navbar } from '../components/Navbar';
 import 'tailwindcss/tailwind.css';
+import {  BsGithub, BsLinkedin, } from 'react-icons/bs';
 
 export default function Contact() {
   // Define contact information for 4 individuals
@@ -11,29 +12,32 @@ export default function Contact() {
       name: "Utsav Kataria",
       position: "Developer",
       email: "utsavkataria@gmail.com",
-      phone: "(408)421-9160",
+      linkedin: "https://www.linkedin.com/in/utsav-kataria/",
+      phone: "(408) 421-9160",
       imageSrc: "/img14s.jpg", 
     },
     {
       name: "Patrick DeBoy",
       position: "Developer",
-      email: "deboypd@gmail.com",
+      email: "deboypd@gmail.com | deboy.xyz",
+      linkedin: "https://www.linkedin.com/in/patrick-deboy-558645152/",
       phone: "410-782-5396",
-      imageSrc: "/IMG_1882.jpg", // Replace with actual image path
+      imageSrc: "/IMG_1882.jpg", 
     },
     {
       name: "Ateef Mahmud",
       position: "Developer",
       email: "ateefayman@gmail.com",
+      linkedin: "https://www.linkedin.com/in/ateef-mahmud-22b766240/",
       phone: "(650) 686-1123",
-      imageSrc: "/PXL_20230726_035208299~2.jpg", // Replace with actual image path
+      imageSrc: "/PXL_20230726_035208299~2.jpg", 
     },
     {
       name: "Bob Brown",
       position: "Developer",
       email: "bob@example.com",
       phone: "(678) 901-2345",
-      imageSrc: "/bob-brown.jpg", // Replace with actual image path
+      imageSrc: "/im16e.jpg",
     },
   ];
 
@@ -67,6 +71,9 @@ export default function Contact() {
               <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">
                 Phone: {contact.phone}
               </p>
+              <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+              <BsGithub />
+              </a>
             </div>
           ))}
         </div>

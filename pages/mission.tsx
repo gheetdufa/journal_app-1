@@ -20,7 +20,7 @@ export default function Mission() {
           Our Mission
         </h2>
         <p className="text-lg text-gray-600 dark:text-gray-400 leading-loose mb-8">
-          At rant.AI, our mission is to empower individuals to embrace self-discovery, cultivate emotional well-being, and foster personal growth through the art of daily journaling. We believe in the transformative power of self-expression and the strength of human connection, and we are committed to providing a safe, supportive, and innovative space for all.
+          At <span className='font-semibold'>rant.AI</span>, our mission is to empower individuals to embrace self-discovery, cultivate emotional well-being, and foster personal growth through the art of daily journaling. We believe in the transformative power of self-expression and the strength of human connection, and we are committed to providing a safe, supportive, and innovative space for all.
         </p>
 
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
