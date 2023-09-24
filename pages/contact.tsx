@@ -17,10 +17,10 @@ export default function Contact() {
         imageSrc: "/IMG_1882.jpg", 
       }, 
       {
-        name: "",
+        name: "Dheer Guda",
         position: "Developer",
-        email: "bob@example.com",
-        phone: "(678) 901-2345",
+        email: "gudadheer@gmail.com",
+        phone: "(732) 268-0687",
         imageSrc: "/im16e.jpg",
       },
       {

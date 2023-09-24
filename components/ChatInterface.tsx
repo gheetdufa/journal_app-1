@@ -45,7 +45,7 @@ export default function ChatInterface() {
         //max_tokens: 70, // You can adjust this based on your desired response length
       }, {
         headers: {
-          'Authorization': 'Bearer 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',
+          'Authorization': 'Bearer APIKEY',
           'Content-Type': 'application/json',
         },
       });
@@ -164,15 +164,15 @@ export default function ChatInterface() {
         )}
         <div
           ref={chatBoxRef}
-          className="chat-box mb-4 overflow-y-auto" // Set overflow to 'auto' to hide scroll bar
-          style={{ maxHeight: '150' }} // Set a max height
+          className="chat-box mt-0 mb-4 max-h-screen overflow-y-scroll" // Set overflow to 'auto' to hide scroll bar
+          style={{ maxHeight: '400', minHeight: '200' }} // Set a max height
         >
           {messages.map((message, index) => (
            <div
            key={index}
            className={`${
              message.startsWith('- ') ? 'text-white' : 'bg-black text-white'
-           } p-2 rounded-lg mb-2`}
+           } p-2 rounded-lg mb-2 `}
            style={{ overflowWrap: 'break-word' }}
          >
               {message}
@@ -189,7 +189,7 @@ export default function ChatInterface() {
             value={newMessage}
             onChange={handleInputChange} // Handle input change
             onKeyPress={handleKeyPress} // Handle Enter key press
-            style={{ height: 'auto' }} // Automatically adjust the height
+            
           />
           <button
             id="sendButton"
