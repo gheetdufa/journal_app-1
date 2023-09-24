@@ -14,7 +14,7 @@ export const Navbar = () => {
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="#" className="flex items-center">
                         <img src="https://www.svgrepo.com/show/524328/book.svg" className="h-8 mr-3" alt="Flowbite Logo" />
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-red-500">r</span>
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap text-red-500">r</span>
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ant.AI</span>
                     </a>
                     <div className="ml-auto lg:hidden">
@@ -35,13 +35,13 @@ export const Navbar = () => {
                     <div className={`lg:flex lg:items-center lg:w-auto w-full ${active ? 'block' : 'hidden'}`} id="navbar-hamburger">
                         <ul className="lg:flex lg:flex-row flex-col font-medium mt-4 lg:mt-0 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
                             <li>
-                                <a href="/page.tsx" className="block py-2 px-4 text-gray-900 rounded hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Home</a>
+                                <a href="/" className="block py-2 px-4 text-gray-900 rounded hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Home</a>
                             </li>
                             <li>
-                                <a href="/missionStatement.html" className="block py-2 px-4 text-gray-900 rounded hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Mission Statement</a>
+                                <a href="/mission" className="block py-2 px-4 text-gray-900 rounded hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Mission Statement</a>
                             </li>
                             <li>
-                                <a href="home.html" className="block py-2 px-4 text-gray-900 rounded hover:bg-gray-200 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white">Contact Us</a>
+                                <a href="contact" className="block py-2 px-4 text-gray-900 rounded hover:bg-gray-200 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white">Contact Us</a>
                             </li>
                         </ul>
                     </div>

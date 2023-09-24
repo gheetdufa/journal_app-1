@@ -7,7 +7,7 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 import * as FileSaver from 'file-saver'; // Import FileSaver
 
 
-// Initialize pdfMake with fonts
+// Initialize pdfMake with fonts 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -18,20 +18,32 @@ export default function ChatInterface() {
 
   const chatBoxRef = useRef<HTMLDivElement | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-
+  //const chunkSize = 300;
+ // const chunks = [];
+  const sentencesToProcess = [
+    "Sentence 1",
+    "Sentence 2",
+    "Sentence 3",
+    // Add more sentences as needed
+  ];
   
   const sendToOpenAI = async (message) => {
     try {
+      const userMessageTokens = message.split(" ").length;
+      //const maxTokens = 1024; // Adjust buffer size as needed
+
       const response = await axios.post('https://api.openai.com/v1/chat/completions', {
         model: "gpt-3.5-turbo",
         messages: [{"role": "system", "content": 
-                "You only offer metal health advice",
+                "You offer metal health advice but dont ask the user for elaboration",
                     },{
                     "role": "user", "content": message}],
-        max_tokens: 10 // You can adjust this based on your desired response length
+                    //max_tokens: maxTokens, // Use the adjusted max_tokens value
+
+        //max_tokens: 70, // You can adjust this based on your desired response length
       }, {
         headers: {
-          'Authorization': 'Bearer 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',
+          'Authorization': 'Bearer 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',
           'Content-Type': 'application/json',
         },
       });
@@ -44,14 +56,124 @@ export default function ChatInterface() {
       return 'An error occurred while generating a response.';
     }
   };
-  
-  
+  /*
   const handleSendMessage = async () => {
     if (newMessage.trim() === '') return;
   
     // Send the user's message to OpenAI and get a response
     const response = await sendToOpenAI(newMessage);
     console.log('Response from OpenAI:', response);
+    */
+    const handleSendMessage = async () => {
+      if (newMessage.trim() === '') return;
+    
+      // Send the user's message to OpenAI and get a response
+      const response = await sendToOpenAI(newMessage);
+      console.log('Response from OpenAI:', response);
+    
+      // Split the response into sections (e.g., every 3 sentences)
+      const sections = splitResponseIntoSections(response, 3);
+    
+      // Add labels to each section
+      const labeledSections = sections.map((section, index) => `Section ${index + 1}: ${section}`);
+    
+      // Add the user's message and labeled sections to the chat
+      const userMessage = newMessage;
+      const assistantResponses = labeledSections.join('\n\n'); // Join sections with newlines
+      const updatedMessages = [...messages, userMessage, assistantResponses];
+      setMessages(updatedMessages);
+    
+      // Clear the input field and hide the initial message
+      setNewMessage('');
+      setShowInitialMessage(false);
+    };
+    
+    // Function to split text into sections based on a specified sentence count
+    const splitResponseIntoSections = (text, sentencesPerSection) => {
+      const sentences = text.split(/[.!?]/); // Split into sentences
+      const sections = [];
+    
+      for (let i = 0; i < sentences.length; i += sentencesPerSection) {
+        const sectionSentences = sentences.slice(i, i + sentencesPerSection);
+        const sectionText = sectionSentences.join('.'); // Recreate section text with sentences
+        sections.push(sectionText);
+      }
+    
+      return sections;
+    };
+  /*
+    // Truncate the response to a maximum of 100 words
+    const truncatedResponse = truncateTo100Words(response);
+    console.log('Truncated Response:', truncatedResponse);
+  
+    // Add the user's message and truncated response to the chat
+    const userMessage = newMessage;
+    const assistantResponse = truncatedResponse;
+    const updatedMessages = [...messages, userMessage, assistantResponse];
+    setMessages(updatedMessages);
+  
+    // Clear the input field and hide the initial message
+    setNewMessage('');
+    setShowInitialMessage(false);
+  };
+  
+  // Function to truncate text to a specified word limit
+  const truncateTo100Words = (text) => {
+    const words = text.split(' ');
+    if (words.length <= 100) {
+      return text;
+    }
+    const truncatedText = words.slice(0, 100).join(' ');
+    return truncatedText + '...'; // Add ellipsis to indicate truncation
+  };
+  */
+  /*
+  const handleSendMessage = async () => {
+    if (newMessage.trim() === '') return;
+  
+    // Add the user's message
+    const updatedMessages = [...messages, newMessage];
+  
+    // Add a constraint message to limit the response to 100 words
+    const constraintMessage = "Keep your response under 100 words.";
+    updatedMessages.push(constraintMessage);
+  
+    // Send the user's message and constraint message to OpenAI and get a response
+    const response = await sendToOpenAI(updatedMessages.join("\n"));
+    console.log('Response from OpenAI:', response);
+  
+    // Create separate user and assistant messages
+    const userMessage = newMessage;
+    const assistantResponse = response;
+  
+    // Combine the user message and assistant response
+    const finalMessages = [...updatedMessages, userMessage, assistantResponse];
+  
+    console.log('Updated Messages:', finalMessages);
+  
+    setMessages(finalMessages);
+    setNewMessage('');
+    setShowInitialMessage(false); // Hide the initial message
+  };
+  */
+  /*
+  const handleSendMessage = async () => {
+    if (newMessage.trim() === '') return;
+
+  // Add the user's message
+  const updatedMessages = [...messages, newMessage];
+
+  // Add a constraint message to limit the response to 100 words
+  const constraintMessage = "Keep your response under 100 words.";
+  updatedMessages.push(constraintMessage);
+
+  // Send the user's message and constraint message to OpenAI and get a response
+  const response = await sendToOpenAI(updatedMessages.join("\n"));
+  console.log('Response from OpenAI:', response);
+  
+    // Send the user's message to OpenAI and get a response
+    //const response = await sendToOpenAI(newMessage);
+    //console.log('Response from OpenAI:', response);
   
     // Create separate user and assistant messages
     const userMessage = newMessage;
@@ -67,7 +189,7 @@ export default function ChatInterface() {
     setShowInitialMessage(false); // Hide the initial message
   };
   
-  
+  */
   
   
 
@@ -160,9 +282,15 @@ const handleSavePdf = () => {
       chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
     }
   }, [messages]);
-
+  const processSentences = async () => {
+    for (const sentence of sentencesToProcess) {
+      const response = await sendToOpenAI(sentence);
+      console.log('Input Sentence:', sentence);
+      console.log('Response from OpenAI:', response);
+    }
+  };
   return (
-    <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-100 w-full h-full flex items-center justify-center">
+    <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-full h-full flex items-center justify-center">
       <div className="bg-gray-400 p-4 text-white w-full max-w-md rounded-lg shadow-lg">
         {showInitialMessage && (
           <div className="text-center mb-4">
@@ -208,7 +336,7 @@ const handleSavePdf = () => {
 
           <button
             id="savePdf"
-            className="bg-gray-600 text-white p-2 rounded-r-lg ml-2"
+            className="bg-gray-600 text-white p-2 rounded-lg ml-2"
             onClick={handleSavePdf} // Handle PDF generation and download
           >
             Save as PDF
